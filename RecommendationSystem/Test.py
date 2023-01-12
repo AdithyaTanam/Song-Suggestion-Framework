@@ -1,0 +1,11 @@
+import pandas as pd
+df=pd.read_csv('UIMatrix_sc10.csv')
+sdf=pd.read_csv('postmatriclistsc10.csv')
+sdf=sdf.sort_values(by=['count'],ascending = False)
+sdf=sdf.head(100)
+#print(sdf)
+sidlist=sdf['songid'].tolist()
+print(sidlist)
+df1 = pd.read_csv('UIMatrix_sc10.csv', usecols=lambda x: x in sidlist, index_col=0)
+print(df1)
+df1.to_csv('UIMatrix_selectedcolumns.csv')
